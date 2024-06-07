@@ -49,32 +49,26 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: OnBoardingSlider(
-          totalPage: 3,
-          headerBackgroundColor: Colors.white,
-          background: [
-            _buildVideoBackground(_controller1),
-            _buildVideoBackground(_controller2),
-            _buildVideoBackground(_controller3)
-          ],
-          speed: 1.8,
-          pageBodies: [
-            _buildPageBody(),
-            _buildPageBody(),
-            _buildPageBody(),
-          ],
-        ),
+      body: OnBoardingSlider(
+        totalPage: 3,
+        headerBackgroundColor: Colors.white,
+        background: [
+          _buildVideoBackground(_controller1),
+          _buildVideoBackground(_controller2),
+          _buildVideoBackground(_controller3)
+        ],
+        speed: 1.8,
+        pageBodies: [
+          _buildPageBody(),
+          _buildPageBody(),
+          _buildPageBody(),
+        ],
       ),
     );
   }
 
   Widget _buildVideoBackground(VideoPlayerController controller) {
-    return Container(
-      child: VideoPlayer(controller),
-    );
+    return SizedBox(height: MediaQuery.of(context).size.height, width: MediaQuery.of(context).size.width, child: VideoPlayer(controller));
   }
 
   Widget _buildPageBody() {
