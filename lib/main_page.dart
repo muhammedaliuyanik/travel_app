@@ -1,6 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_app/colors.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -12,32 +13,43 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final autoSizeGroup = AutoSizeGroup();
   var _bottomNavIndex = 0;
-   final iconList = <IconData>[
-    Icons.brightness_5,
-    Icons.brightness_4,
-    Icons.brightness_6,
-    Icons.brightness_7,
+  final iconList = <IconData>[
+    Icons.home,
+    Icons.location_on,
+    Icons.notification_add,
+    Icons.person,
   ];
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+        onPressed: () {
+          setState(() {
+            _bottomNavIndex = -1;
+          });
+        },
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(50.0)),
+        ),
+        backgroundColor: GlobalColors.primaryColor,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-           bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-            onTap: (p0) {
-              
-            },
-            activeIndex: _bottomNavIndex,
+      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+        gapLocation: GapLocation.center, // Set the gap location to center
+        onTap: (index) {
+          setState(() {
+            _bottomNavIndex = index;
+          });
+        },
+        activeIndex: _bottomNavIndex,
         itemCount: iconList.length,
         tabBuilder: (int index, bool isActive) {
-          final color = isActive
-              ? Colors.red
-              : Colors.grey;
+          final color = isActive ? Colors.red : Colors.grey;
           return Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -47,20 +59,10 @@ class _MainPageState extends State<MainPage> {
                 size: 24,
                 color: color,
               ),
-              const SizedBox(height: 4),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: AutoSizeText(
-                  "brightness $index",
-                  maxLines: 1,
-                  style: TextStyle(color: color),
-                  group: autoSizeGroup,
-                ),
-              )
             ],
           );
         },
-        
-    ));
+      ),
+    );
   }
 }
