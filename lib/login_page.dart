@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:travel_app/main_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -14,7 +13,6 @@ class LoginPage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           const Positioned.fill(
-            //
             child: Image(
               image: AssetImage('assets/images/login_background.png'),
               fit: BoxFit.fill,
@@ -34,7 +32,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 Container(
                   width: size.width * 0.8,
-                  padding: EdgeInsets.symmetric(
+                  padding:const EdgeInsets.symmetric(
                     vertical: 20,
                   ),
                   child: OutlinedButton.icon(
@@ -56,20 +54,20 @@ class LoginPage extends StatelessWidget {
                             width: 1.0), // Customize the color and width
                       ),
                       padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(
+                       const EdgeInsets.symmetric(
                             vertical: 12.0,
                             horizontal: 16.0), // Add padding here
                       ),
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: size.width * 0.8,
                   child: OutlinedButton.icon(
                     onPressed: () {
                       _gotoMainPage(context);
                     },
-                    icon: const Icon(Icons.apple),
+                    icon: const Icon(Icons.apple, color: Colors.black),
                     label: const Text(
                       '   Continue with Apple',
                       style: TextStyle(
@@ -84,7 +82,7 @@ class LoginPage extends StatelessWidget {
                             width: 1.0), // Customize the color and width
                       ),
                       padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(
+                       const EdgeInsets.symmetric(
                             vertical: 12.0,
                             horizontal: 16.0), // Add padding here
                       ),
